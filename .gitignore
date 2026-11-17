@@ -1,0 +1,14 @@
+# dbt compiled and target directories
+target/
+dbt_packages/
+logs/
+
+# Environment credentials and local configs
+.env
+profiles.yml
+
+# Python / Jupyter checkpoints
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
