@@ -1,4 +1,5 @@
 -- 1. Verify row counts for all eight tables.
+-- Used SELECT COUNT based on instruction given
 SELECT 'booking_channels' AS table_name, COUNT(*) AS row_count
 FROM jh82459.booking_channels
 UNION ALL
