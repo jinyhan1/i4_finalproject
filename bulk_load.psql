@@ -1,3 +1,17 @@
+\set ON_ERROR_STOP on
+
+BEGIN;
+
+TRUNCATE TABLE
+    jh82459.loyalty_activity,
+    jh82459.bookings,
+    jh82459.customers,
+    jh82459.properties,
+    jh82459.room_types,
+    jh82459.loyalty_tiers,
+    jh82459.hotel_brands,
+    jh82459.booking_channels;
+
 \echo Loading jh82459.booking_channels ...
 \copy jh82459.booking_channels FROM 'seeds/booking_channels.csv' WITH (FORMAT csv, HEADER true, NULL '')
 
@@ -21,3 +35,6 @@
 
 \echo Loading jh82459.loyalty_activity ...
 \copy jh82459.loyalty_activity FROM 'seeds/loyalty_activity.csv' WITH (FORMAT csv, HEADER true, NULL '')
+
+COMMIT;
+\echo Bulk loading completed successfully.
