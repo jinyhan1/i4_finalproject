@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: hospitality
+    database: postgres
+    schema: jh82459
+    tables:
+      - name: booking_channels
+      - name: bookings
+      - name: customers
+      - name: hotel_brands
+      - name: loyalty_activity
+      - name: loyalty_tiers
+      - name: properties
+      - name: room_types
