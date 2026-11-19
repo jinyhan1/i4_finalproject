@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension with current loyalty tier information."
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_booking_channels
+    description: "Booking channel dimension with commission information."
+    columns:
+      - name: channel_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_properties
+    description: "Hotel property dimension with brand information."
+    columns:
+      - name: property_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_room_types
+    description: "Room type dimension."
+    columns:
+      - name: room_type_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: fact_booking
+    description: "Booking fact table with one row per booking."
+    columns:
+      - name: booking_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+
+      - name: property_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_properties')
+                field: property_id
+
+      - name: channel_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_booking_channels')
+                field: channel_id
+
+      - name: room_type_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_room_types')
+                field: room_type_id
+
+  - name: fact_loyalty_activity
+    description: "Loyalty activity fact table with one row per activity."
+    columns:
+      - name: activity_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
