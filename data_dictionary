@@ -1,0 +1,14 @@
+1. Dimension Tables
+dim_customers
+Column Name	Data Type	Key / Constraint
+customer_id	TEXT	PK
+email	TEXT	Nullable
+first_name	TEXT	—
+last_name	TEXT	—
+home_country	TEXT	—
+enrollment_date	DATE	—
+marketing_opt_in	TEXT	—
+current_tier_id	TEXT	FK
+current_tier_name	TEXT	—
+current_tier_min_points	INTEGER	—
+bonus_points_pct	DOUBLE PRECISION	—
