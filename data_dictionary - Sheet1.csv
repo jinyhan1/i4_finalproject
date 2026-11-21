@@ -1,0 +1,99 @@
+Table Name,Table Type,Field Name,Data Type,Allowed Values / Constraints,description
+dim_customers,dimension,customer_id,TEXT,"unqiue, not null, PK",unique indentifier for each customer
+dim_customers,dimension,email,TEXT,NULL allowed,customer email address
+dim_customers,dimension,first_name,TEXT,not NULL,customer first name
+dim_customers,dimension,last_name,TEXT,not NULL,customer last name
+dim_customers,dimension,home_country,TEXT,not NULL,customer home country
+dim_customers,dimension,enrollment_date,DATE,"format:YYYY_MM_DD, not NULL",date when customer join the loyalty program
+dim_customers,dimension,marketing_opt_in,TEXT,not NULL,customer marketing consent value
+dim_customers,dimension,current_tier_id,TEXT,"not NULL, FK",customer current loyalty tier
+dim_customers,dimension,current_tier_name,TEXT,not NULL,name of customer current loyalty tier
+dim_customers,dimension,current_tier_min_points,INTRGER,NULL allowed,min qualifying points for the current tier
+dim_customers,dimension,current_tier_min_points,INTRGER,not NULL,bonus point percentage for current tier
+dim_properties,dimension,property_id,TEXT,not NULL,unique indentifier for hotel property
+dim_properties,dimension,property_name,TEXT,"unique and not null, PK",hotel property name
+dim_properties,dimension,brand_id,TEXT,"Hotel brand identifier, FK",unique indentifier for property's hotel brand
+dim_properties,dimension,brand_name,TEXT,,hotel brand name
+dim_properties,dimension,brand_segment,TEXT,,market segment of the hotel brand
+dim_properties,dimension,avg_daily_rate,INTRGER,,average daily rate for the hotel brand
+dim_properties,dimension,city,TEXT,City where the property is located,city where the property are
+dim_properties,dimension,country,TEXT,Country where the property is located,country where thr property are
+dim_properties,dimension,star_rating,INTRGER,,hotel star raing
+dim_properties,dimension,room_count,INTRGER,,number pf rooms at the property
+dim_properties,dimension,year_opened,INTRGER,,year the property opened
+dim_booking_channels,dimension,channel_id,TEXT,unique and not null PK,unique indentifier for booking channel
+dim_booking_channels,dimension,channel_name,TEXT,,name of booking channel 
+dim_booking_channels,dimension,commission_pct,INTRGER,,commission percentage charged by channel
+dim_room_types,dimension,room_type_id,TEXT,"unique and not null, PK",unique indentifier of room type
+dim_room_types,dimension,room_type_name,TEXT,,room type name
+dim_room_types,dimension,max_occupancy,INTRGER,,maximum number of guest for the room type
+dim_room_types,dimension,rate_multiplier,FLOAT,,multiplier used for adjust the room rate
+fact_booking,Fact,booking_id,TEXT,"unique and not null, PK",unique indentifier for booking
+fact_booking,Fact,customer_id,TEXT,FK,indentifier of the customer booking
+fact_booking,Fact,property_id,TEXT,FK,indentifier of the booked hotel property
+fact_booking,Fact,room_type_id,TEXT,FK,indentifier of the booked room type
+fact_booking,Fact,channel_id,TEXT,FK,identifier of thr booked channel
+fact_booking,Fact,booking_date,DATE,"format:YYYY_MM_DD, not NULL",date when the booking was created
+fact_booking,Fact,check_in_date,DATE,"format:YYYY_MM_DD, not NULL",planned hotel check-in date
+fact_booking,Fact,check_out_date,DATE,"format:YYYY_MM_DD, not NULL",planned hotel check-our date
+fact_booking,Fact,nights,INTRGER,,bumber of nights stay
+fact_booking,Fact,room_rate,FLOAT,,nightly room rate
+fact_booking,Fact,total_amount,FLOAT,,total amount charged for the booking
+fact_booking,Fact,booking_status,TEXT,"allowed value:completed, cancelled, confirmed, no_show",current booking status
+fact_booking,Fact,points_earned,INTRGER,,loyalty points earned from the booking
+fact_loyalty_activity,Fact,activity_id,TEXT,"unique and not null, PK",unique indentifier for loyalty activity
+fact_loyalty_activity,Fact,customer_id,TEXT,FK,identifier of the customer lined to the activity
+fact_loyalty_activity,Fact,activity_date,DATE,"format:YYYY_MM_DD, not NULL",date of loyalty point activity
+fact_loyalty_activity,Fact,activity_type,TEXT,,type of loyalty point activity
+fact_loyalty_activity,Fact,points,INTRGER,,number of points add by the activity
+fact_loyalty_activity,Fact,partner_name,TEXT,,partner connected to the loyalty activity
+product_booking_performance,data product,property_name,TEXT,,hotel property name
+product_booking_performance,data product,brand_name,TEXT,,hotel brand name
+product_booking_performance,data product,room_type_name,TEXT,,room type name
+product_booking_performance,data product,channel_name,TEXT,,booking channel name
+product_booking_performance,data product,booking_id,TEXT,PK,unique booking identifier
+product_booking_performance,data product,customer_id,TEXT,FK,customer identifier
+product_booking_performance,data product,property_id,TEXT,FK,property identifier
+product_booking_performance,data product,room_type_id,TEXT,FK,room type identifier
+product_booking_performance,data product,channel_id,TEXT,FK,booking channel identifier
+product_booking_performance,data product,booking_date,DATE,"format:YYYY_MM_DD, not NULL",date the booking created
+product_booking_performance,data product,check_in_date,DATE,"format:YYYY_MM_DD, not NULL",planned hotel check-in date
+product_booking_performance,data product,check_out_date,DATE,"format:YYYY_MM_DD, not NULL",planned hotel check-our date
+product_booking_performance,data product,nights,INTRGER,,number of nights stay
+product_booking_performance,data product,room_rate,FLOAT,,nightly room rate
+product_booking_performance,data product,total_amount,FLOAT,,total booking amount
+product_booking_performance,data product,booking_status,TEXT,,booking status
+product_booking_performance,data product,points_earned,INTRGER,,point earned from the booking
+product_customer_loyalty_summary,data product,customer_id,TEXT,"unique and not null, PK",unique customer identifier
+product_customer_loyalty_summary,data product,first_name,TEXT,,customer first name
+product_customer_loyalty_summary,data product,last_name,TEXT,,customer last name
+product_customer_loyalty_summary,data product,home_country,TEXT,,customer home country
+product_customer_loyalty_summary,data product,enrollment_date,DATE,"format:YYYY_MM_DD, not NULL",date of loyalty enrolled
+product_customer_loyalty_summary,data product,current_tier_id,TEXT,FK,current loyalty tier identifier
+product_customer_loyalty_summary,data product,current_tier_name,TEXT,,current loyalty tier name
+product_customer_loyalty_summary,data product,current_tier_min_points,INTRGER,,minimum point for current tier
+product_customer_loyalty_summary,data product,completed_bookings_12m,FLOAT,,completed booking in the reporting period
+product_customer_loyalty_summary,data product,qualifying_points_12m,FLOAT,,qualifying point from completed booking
+product_cancellation_no_show,data product,booking_month,DATE,"format:YYYY_MM_DD, not NULL",month the booking created
+product_cancellation_no_show,data product,property_id,TEXT,,hotel property identifier
+product_cancellation_no_show,data product,property_name,TEXT,,hotel property name
+product_cancellation_no_show,data product,brand_name,TEXT,,hotel brand name
+product_cancellation_no_show,data product,channel_id,TEXT,,booking channel identifier
+product_cancellation_no_show,data product,channel_name,TEXT,,booking channel name
+product_cancellation_no_show,data product,total_bookings,INTEGER,,total booking amount
+product_cancellation_no_show,data product,completed_bookings,INTEGER,,total completed bookings
+product_cancellation_no_show,data product,cancelled_bookings,INTEGER,,total cancellation bookings
+product_cancellation_no_show,data product,no_show_bookings,INTEGER,,total no show bookings
+product_cancellation_no_show,data product,confirmed_bookings,INTEGER,,total confirmed bookings
+product_cancellation_no_show,data product,resolved_bookings,INTEGER,,"completed, cancelled and no show bookings"
+product_cancellation_no_show,data product,no_show_rate_pct,NUMERIC,range:0-100,no show bookings as percentage of resolved bookings
+product_cancellation_no_show,data product,cancelled_rate_pct,NUMERIC,range:0-100,cancelled bookings as percentage of resolved bookings
+product_next_tier_opportunities,data product,customer_id,TEXT,,identifier of customer with next tier opportunity
+product_next_tier_opportunities,data product,first_name,TEXT,,customer first name
+product_next_tier_opportunities,data product,last_name,TEXT,,customer last name
+product_next_tier_opportunities,data product,current_tier_name,TEXT,,customer current loyalty tier
+product_next_tier_opportunities,data product,qualifying_points_12m,FLOAT,,customer qualifying points in last one year
+product_next_tier_opportunities,data product,next_tier_name,TEXT,,next loyalty tier 
+product_next_tier_opportunities,data product,next_tier_min_points,INTEGER,,minimum points required to next tier
+product_next_tier_opportunities,data product,points_needed,FLOAT,,additional point needed to reach next tier
+product_next_tier_opportunities,data product,progress_pct,NUMERIC,range:0-100,percentage of the next tier point required
