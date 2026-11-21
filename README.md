@@ -22,3 +22,5 @@ Our project uses eight synthetic CSV datasets containing a total of 16,770 raw r
 | loyalty_tiers.csv | 4 | Loyalty tiers, qualifying-points thresholds, and benefits |
 | properties.csv | 27 | Hotel properties, locations, and brand relationships |
 | room_types.csv | 6 | Room categories, occupancy, and rate multipliers |
+
+The data dictionary is located in data_dictionary.cvs
