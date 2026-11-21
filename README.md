@@ -23,4 +23,4 @@ Our project uses eight synthetic CSV datasets containing a total of 16,770 raw r
 | properties.csv | 27 | Hotel properties, locations, and brand relationships |
 | room_types.csv | 6 | Room categories, occupancy, and rate multipliers |
 
-The data dictionary is available in data_dictionary.md.
+The data dictionary is available in [data_dictionary.md](data_dictionary.md).
